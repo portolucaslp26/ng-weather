@@ -1,0 +1,26 @@
+<mat-card id="card">
+  <mat-card-subtitle>Weather</mat-card-subtitle>
+  <mat-spinner style="margin: 0 auto;" *ngIf="!data"></mat-spinner>
+  <mat-card-title-group *ngIf="data">
+    <mat-card-title>{{data?.name}}</mat-card-title>
+    <mat-card-subtitle><b>Temperature:</b>&nbsp;{{data?.main.temp.toFixed(0)}}°C</mat-card-subtitle>
+    <mat-card-subtitle><b>Humidity:</b>&nbsp;{{data?.main.humidity}}%</mat-card-subtitle>
+    <mat-card-subtitle><b>Max. Temperarure:</b>&nbsp;{{data?.main.temp_max.toFixed(0)}}°C</mat-card-subtitle>
+    <mat-card-subtitle><b>Min. Temperature:</b>&nbsp;{{data?.main.temp_min.toFixed(0)}}°C</mat-card-subtitle>
+    <mat-card-subtitle><b>Wind:</b>&nbsp;{{data?.wind.speed}}m/s</mat-card-subtitle>
+    <div>
+      <mat-card-subtitle style="text-align: center; font-size: 18px; margin: 0;"><b>{{data?.weather[0].main}}</b></mat-card-subtitle>
+      <img mat-card-lg-image [src]="getImage()">
+    </div>
+  </mat-card-title-group>
+  <mat-card-actions>
+    <form [formGroup]="form"class="form">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>City</mat-label>
+        <input formControlName="city" matInput #message maxlength="100" placeholder="Enter the city name">
+      </mat-form-field>
+      <button (click)="getWewather()" mat-raised-button color="primary">Search</button>
+    </form>
+  </mat-card-actions>
+</mat-card>
+
